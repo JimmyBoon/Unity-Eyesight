@@ -50,8 +50,8 @@ public class EyeSight : MonoBehaviour
         if (target == null) { return false; }
         
         RaycastHit hit;
-        if ((target.transform.position - eyes.transform.position).sqrMagnitude >= seeingRange * seeingRange) { return false; }
+        if ((target.transform.position - eyes.transform.position).sqrMagnitude >= seeingRange * seeingRange || !InSightAngle(target)) { return false; }
         
-        return Physics.Linecast(eyes.transform.position, target.transform.position, out hit) && InSightAngle(target) && hit.transform.gameObject.name == target.gameObject.name;
+        return Physics.Linecast(eyes.transform.position, target.transform.position, out hit) && hit.transform.gameObject.name == target.gameObject.name;
     }
 }
